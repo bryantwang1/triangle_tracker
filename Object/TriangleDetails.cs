@@ -6,7 +6,7 @@ namespace TriangleTracker.Objects
         private int _side2;
         private int _side3;
 
-        public void Triangle(userSide1, userSide2, userSide3)
+        public Triangle(int userSide1, int userSide2, int userSide3)
         {
             _side1 = userSide1;
             _side2 = userSide2;
@@ -14,7 +14,8 @@ namespace TriangleTracker.Objects
         }
 
         public string GetTriangleType() {
-            if ((_side1 + _side2 > _side3) || (_side1 + _side3 > _side2) || (_side2 + side3 > _side1)) {
+            if ((_side1 + _side2 > _side3) && (_side1 + _side3 > _side2) && (_side2 + _side3 > _side1))
+            {
                 if (_side1 == _side2)
                 {
                     if (_side2 == _side3)
@@ -23,12 +24,12 @@ namespace TriangleTracker.Objects
                     }
                     else
                     {
-                        return "Isoceles";
+                        return "Isosceles";
                     }
                 }
                 else if (_side2 == _side3 || _side1 == _side3)
                 {
-                    return "Isoceles";
+                    return "Isosceles";
                 }
                 else
                 {
