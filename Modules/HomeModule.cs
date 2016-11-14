@@ -1,8 +1,8 @@
 using Nancy;
-using Parcel.Objects;
+using TriangleTracker.Objects;
 using System;
 
-namespace Parcel
+namespace TriangleTracker
 {
     public class HomeModule : NancyModule
     {
@@ -11,22 +11,20 @@ namespace Parcel
             Get["/form"] = _ => {
                 return View["form.cshtml"];
             };
-            Get["/parcelDisplay"] =_=> {
-                string parcelName = Request.Query["parcel-name"];
-                string parcelHeight = Request.Query["parcel-height"];
-                string parcelWidth = Request.Query["parcel-width"];
-                string parcelLength = Request.Query["parcel-length"];
-                string parcelWeight = Request.Query["parcel-weight"];
-                string[] formValues = { parcelName, parcelHeight, parcelWidth, parcelLength, parcelWeight};
+            Get["/triangleTrackerDisplay"] =_=> {
+                string side1 = Request.Query["side1"];
+                string side2 = Request.Query["side2"];
+                string side3 = Request.Query["side3"];
+                string[] formValues = { side1, side2, side3 };
 
                 if(Array.Exists(formValues, element => element == "")) {
                     return View["form.cshtml"];
                 }
                 else
                 {
-                    ParcelObject userParcel = new ParcelObject(parcelName, int.Parse(parcelWeight), int.Parse(parcelHeight), int.Parse(parcelWidth), int.Parse(parcelLength));
+                    Triangle newTriangle = new Triangle(int.Parse(side1), int.Parse(side2), int.Parse(side3));
 
-                    return View["parcel-display.cshtml", userParcel];
+                    return View["triangle-display.cshtml", newTriangle];
                 }
             };
         }
